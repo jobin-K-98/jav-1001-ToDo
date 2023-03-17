@@ -1,3 +1,7 @@
+/*This assignment is worked in group with Sri hari Sreenivasan(A00272180)
+and myself (A00250653). I worked on the layout section
+ and helped Sri Hari in debugging the code. Sri Hari worked on the MainActivity part.
+ */
 package com.example.todoapp
 
 import androidx.appcompat.app.AppCompatActivity
@@ -42,6 +46,12 @@ class MainActivity : AppCompatActivity() {
         listView.setOnItemClickListener { _, view, position, _ ->
             val isChecked = (view as CheckedTextView).isChecked
             listView.setItemChecked(position, !isChecked)
+        }
+        // we decided to set an on-click-listener for removing an item from the list items
+        listView.setOnItemClickListener { _, _, position, _ ->
+            items.removeAt(position) // removes the item from the array list at the 'position'
+            adapter.notifyDataSetChanged() // notify the adapter of the data change in the data source
+            true// set to true to indicate that the long click was handled
         }
     }
 }
